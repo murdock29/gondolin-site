@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Gondolin — The Hidden City</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep: #0a1420;
+    --bg-panel: #101c2c;
+    --stone: #1e2f42;
+    --stone-line: #2c4358;
+    --silver: #cfdce8;
+    --gold: #c79a56;
+    --gold-dim: #8a6d3e;
+    --teal: #4a8b7c;
+    --text-muted: #8aa0b4;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg-deep);
+    color: var(--silver);
+    font-family: 'EB Garamond', serif;
+    line-height: 1.6;
+  }
+
+  h1, h2, .eyebrow { font-family: 'Cinzel', serif; }
+
+  .eyebrow{
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  a { color: var(--gold); text-decoration: none; }
+  a:hover, a:focus-visible { text-decoration: underline; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position: relative;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 2rem 1.5rem;
+  }
+
+  .hero-sky{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse at 50% 30%, rgba(74,139,124,0.10), transparent 60%),
+      linear-gradient(180deg, #060c15 0%, #0a1420 55%, #0d1c2b 100%);
+    z-index:0;
+  }
+
+  .hero svg{ position:absolute; bottom:0; left:0; width:100%; height:56%; z-index:1; }
+
+  .gate-glow{
+    animation: flicker 5s ease-in-out infinite;
+    transform-origin: center;
+  }
+  @keyframes flicker{
+    0%,100% { opacity: 0.55; }
+    45% { opacity: 1; }
+    60% { opacity: 0.75; }
+  }
+
+  .hero-content{ position:relative; z-index:2; max-width: 640px; }
+
+  .hero h1{
+    font-size: clamp(2.6rem, 7vw, 4.6rem);
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    margin: 0.6rem 0 0.4rem;
+    color: var(--silver);
+    text-shadow: 0 0 30px rgba(199,154,86,0.25);
+  }
+
+  .hero p.tagline{
+    font-style: italic;
+    color: var(--text-muted);
+    font-size: 1.15rem;
+    margin: 0 auto 1.6rem;
+    max-width: 30ch;
+  }
+
+  .scroll-cue{
+    margin-top: 2.5rem;
+    font-family:'Jost', sans-serif;
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ---------- SECTIONS ---------- */
+  section{ padding: 5rem 1.5rem; }
+
+  .wrap{ max-width: 780px; margin: 0 auto; }
+
+  .welcome h2{
+    font-size: 1.9rem;
+    color: var(--silver);
+    margin: 0.4rem 0 1.2rem;
+  }
+
+  .welcome p{ color: var(--text-muted); font-size: 1.08rem; max-width: 62ch; }
+
+  /* ---------- CHRONICLE STONES ---------- */
+  .chronicle{ background: var(--bg-panel); border-top: 1px solid var(--stone-line); border-bottom: 1px solid var(--stone-line); }
+
+  .chronicle h2{ text-align:center; font-size: 1.9rem; margin: 0.4rem 0 3rem; color: var(--silver); }
+
+  .stones{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.5rem;
+  }
+
+  .stone{
+    background: linear-gradient(180deg, var(--stone), #17273a);
+    border: 1px solid var(--stone-line);
+    border-radius: 3px;
+    padding: 1.8rem 1.5rem;
+    position: relative;
+  }
+
+  .stone::before{
+    content:"";
+    position:absolute; top:0; left:50%; transform: translateX(-50%);
+    width: 34px; height: 3px; background: var(--gold-dim);
+  }
+
+  .stone h3{
+    font-family:'Cinzel', serif;
+    font-size: 1.05rem;
+    color: var(--gold);
+    margin: 0.6rem 0 0.8rem;
+    letter-spacing: 0.02em;
+  }
+
+  .stone p{ color: var(--text-muted); font-size: 0.98rem; margin: 0; }
+
+  .hook{
+    margin-top: 2.6rem;
+    text-align: center;
+    font-style: italic;
+    color: var(--teal);
+    font-size: 1.05rem;
+  }
+
+  /* ---------- TABLET / FOOTER ---------- */
+  footer{
+    padding: 4rem 1.5rem 3rem;
+    text-align: center;
+  }
+
+  .tablet{
+    max-width: 480px;
+    margin: 0 auto;
+    border: 1px solid var(--stone-line);
+    background: var(--bg-panel);
+    padding: 2.2rem 1.8rem;
+    border-radius: 3px;
+  }
+
+  .tablet .eyebrow{ display:block; margin-bottom: 0.8rem; }
+
+  .links{
+    display:flex; justify-content:center; gap: 1.6rem; flex-wrap: wrap;
+    margin-top: 1rem; font-family:'Jost', sans-serif; font-size: 0.85rem; letter-spacing: 0.04em;
+  }
+
+  .fine-print{ margin-top: 2.4rem; color: var(--text-muted); font-size: 0.8rem; }
+
+  @media (max-width: 720px){
+    .stones{ grid-template-columns: 1fr; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    .gate-glow{ animation: none; opacity: 0.85; }
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="hero-sky"></div>
+  <svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <polygon points="0,400 0,220 150,120 260,200 380,80 520,190 620,60 760,180 880,90 1020,210 1120,140 1200,220 1200,400" fill="#0d1826"/>
+    <polygon points="0,400 0,280 180,210 320,260 460,180 600,250 760,170 900,240 1040,190 1200,260 1200,400" fill="#0a141f"/>
+    <g class="gate-glow">
+      <circle cx="600" cy="248" r="5" fill="#f0c98a"/>
+      <circle cx="600" cy="248" r="14" fill="#c79a56" opacity="0.25"/>
+    </g>
+    <circle cx="450" cy="230" r="2.5" fill="#e8d9b8" opacity="0.7"/>
+    <circle cx="760" cy="238" r="2.5" fill="#e8d9b8" opacity="0.6"/>
+  </svg>
+  <div class="hero-content">
+    <span class="eyebrow">Beyond the Encircling Peaks</span>
+    <h1>GONDOLIN</h1>
+    <p class="tagline">A city that does not appear on any map, kept by those who chose to disappear rather than fall.</p>
+  </div>
+  <div class="scroll-cue">↓ enter the vale ↓</div>
+</header>
+
+<section class="welcome">
+  <div class="wrap">
+    <span class="eyebrow">Welcome, traveler</span>
+    <h2>You have found the pass.</h2>
+    <p>
+      Few do. This page marks the threshold — a small hold carved into the mountainside,
+      built and kept by hand rather than by legion. Below, you'll find the chronicle of
+      the city as it's told around the hearth: three stones, three stories, and the hook
+      that brings strangers to the gate in the first place. Use it as you like — a homepage,
+      a campaign primer, or just a place to hang a lantern.
+    </p>
+  </div>
+</section>
+
+<section class="chronicle">
+  <div class="wrap">
+    <span class="eyebrow" style="display:block; text-align:center;">The Chronicle</span>
+    <h2>Three Stones of the City</h2>
+    <div class="stones">
+      <div class="stone">
+        <h3>The Encircling Peaks</h3>
+        <p>
+          No road leads here. The valley sits inside a ring of unclimbable stone, and the
+          one true path shifts with the seasons, known only to the wardens who walk it
+          blindfolded, by memory and by count of steps.
+        </p>
+      </div>
+      <div class="stone">
+        <h3>The Founding Oath</h3>
+        <p>
+          Generations back, a company of artisans, scribes, and quiet folk swore to build
+          somewhere the wars outside could never follow. They gave up their old names for
+          new ones, and swore never to speak the way down to strangers.
+        </p>
+      </div>
+      <div class="stone">
+        <h3>The Silver Gate</h3>
+        <p>
+          The smiths' last and greatest work: a gate that will not open for force, coin,
+          or clever tongue — only for a true name, spoken by someone who means to stay.
+        </p>
+      </div>
+    </div>
+    <p class="hook">
+      "They say lantern-light shows between the peaks on the clearest nights —
+      and that somewhere below, a bell tolls only for the lost."
+    </p>
+  </div>
+</section>
+
+<footer>
+  <div class="tablet">
+    <span class="eyebrow">Leave word at the gate</span>
+    <p style="margin:0; color: var(--text-muted);">
+      Reach the keeper of this hold, or wander further into the vale.
+    </p>
+    <div class="links">
+      <a href="mailto:you@gondolin.at">Send word</a>
+      <a href="#">The chronicle</a>
+      <a href="#">About the keeper</a>
+    </div>
+  </div>
+  <p class="fine-print">gondolin.at &middot; a hidden hold, kept in good order</p>
+</footer>
+
+</body>
+</html>
