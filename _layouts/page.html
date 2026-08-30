@@ -1,0 +1,266 @@
+---
+---
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ page.title }} — Gondolin</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Jost:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg-deep: #0a1420;
+    --bg-panel: #101c2c;
+    --stone: #1e2f42;
+    --stone-line: #2c4358;
+    --silver: #cfdce8;
+    --gold: #c79a56;
+    --gold-dim: #8a6d3e;
+    --teal: #4a8b7c;
+    --text-muted: #8aa0b4;
+  }
+
+  * { box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body{
+    margin:0;
+    background: var(--bg-deep);
+    color: var(--silver);
+    font-family: 'EB Garamond', serif;
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, .eyebrow { font-family: 'Cinzel', serif; }
+
+  .eyebrow{
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  a { color: var(--gold); text-decoration: none; }
+  a:hover, a:focus-visible { text-decoration: underline; }
+  a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  /* ---------- NAVIGATION ---------- */
+  .site-nav{
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: rgba(10, 20, 32, 0.9);
+    backdrop-filter: blur(6px);
+    border-bottom: 1px solid var(--stone-line);
+  }
+
+  .nav-wrap{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .nav-brand{
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--silver);
+    font-size: 1rem;
+  }
+  .nav-brand:hover{ color: var(--gold); text-decoration: none; }
+
+  .nav-links{
+    display: flex;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .nav-links a{ color: var(--text-muted); }
+  .nav-links a:hover{ color: var(--gold); }
+  .nav-links a.active{ color: var(--gold); border-bottom: 1px solid var(--gold-dim); padding-bottom: 2px; }
+
+  /* ---------- PAGE HERO ---------- */
+  .page-hero{
+    position: relative;
+    min-height: 42vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 3rem 1.5rem;
+  }
+
+  .hero-sky{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse at 50% 20%, rgba(74,139,124,0.10), transparent 60%),
+      linear-gradient(180deg, #060c15 0%, #0a1420 60%, #0d1c2b 100%);
+    z-index:0;
+  }
+
+  .page-hero svg{ position:absolute; bottom:0; left:0; width:100%; height:60%; z-index:1; }
+
+  .gate-glow{
+    animation: flicker 5s ease-in-out infinite;
+    transform-origin: center;
+  }
+  @keyframes flicker{
+    0%,100% { opacity: 0.55; }
+    45% { opacity: 1; }
+    60% { opacity: 0.75; }
+  }
+
+  .hero-content{ position:relative; z-index:2; max-width: 640px; }
+
+  .page-hero h1{
+    font-size: clamp(2.1rem, 5.5vw, 3.2rem);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    margin: 0.6rem 0 0;
+    color: var(--silver);
+    text-shadow: 0 0 30px rgba(199,154,86,0.25);
+  }
+
+  /* ---------- CONTENT ---------- */
+  .content-section{ padding: 4rem 1.5rem 5rem; }
+
+  .wrap{ max-width: 780px; margin: 0 auto; }
+
+  .prose h2{
+    font-size: 1.5rem;
+    color: var(--gold);
+    margin: 2.4rem 0 1rem;
+    letter-spacing: 0.02em;
+  }
+  .prose h2:first-child{ margin-top: 0; }
+
+  .prose h3{
+    font-size: 1.1rem;
+    color: var(--silver);
+    margin: 1.8rem 0 0.6rem;
+  }
+
+  .prose p{ color: var(--text-muted); font-size: 1.05rem; margin: 0 0 1.1rem; }
+
+  .prose strong{ color: var(--silver); }
+
+  .prose ul, .prose ol{ color: var(--text-muted); font-size: 1.02rem; padding-left: 1.4rem; margin: 0 0 1.4rem; }
+  .prose li{ margin-bottom: 0.4rem; }
+  .prose li::marker{ color: var(--gold-dim); }
+
+  .prose blockquote{
+    margin: 2rem 0;
+    padding: 1rem 1.4rem;
+    border-left: 2px solid var(--gold-dim);
+    background: var(--bg-panel);
+    color: var(--teal);
+    font-style: italic;
+    font-size: 1rem;
+  }
+  .prose blockquote p{ color: var(--teal); margin: 0; }
+
+  .prose hr{ border: none; border-top: 1px solid var(--stone-line); margin: 2.6rem 0; }
+
+  .prose a{ text-decoration: underline; text-underline-offset: 2px; }
+
+  /* ---------- FOOTER ---------- */
+  footer{
+    padding: 4rem 1.5rem 3rem;
+    text-align: center;
+    background: var(--bg-panel);
+    border-top: 1px solid var(--stone-line);
+  }
+
+  .tablet{
+    max-width: 480px;
+    margin: 0 auto;
+    border: 1px solid var(--stone-line);
+    background: var(--stone);
+    padding: 2.2rem 1.8rem;
+    border-radius: 3px;
+  }
+
+  .tablet .eyebrow{ display:block; margin-bottom: 0.8rem; }
+
+  .links{
+    display:flex; justify-content:center; gap: 1.6rem; flex-wrap: wrap;
+    margin-top: 1rem; font-family:'Jost', sans-serif; font-size: 0.85rem; letter-spacing: 0.04em;
+  }
+
+  .fine-print{ margin-top: 2.4rem; color: var(--text-muted); font-size: 0.8rem; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior: auto; }
+    .gate-glow{ animation: none; opacity: 0.85; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="site-nav">
+  <div class="nav-wrap">
+    <a href="{{ '/' | relative_url }}" class="nav-brand">GONDOLIN</a>
+    <div class="nav-links">
+      <a href="{{ '/' | relative_url }}" {% if page.url == '/' %}class="active"{% endif %}>Start</a>
+      <a href="{{ '/vorgeschichte/' | relative_url }}" {% if page.url contains 'vorgeschichte' %}class="active"{% endif %}>Vorgeschichte</a>
+      <a href="{{ '/fraktionen/' | relative_url }}" {% if page.url contains 'fraktionen' %}class="active"{% endif %}>Fraktionen</a>
+      <a href="{{ '/orte/' | relative_url }}" {% if page.url contains 'orte' %}class="active"{% endif %}>Orte</a>
+    </div>
+  </div>
+</nav>
+
+<header class="page-hero">
+  <div class="hero-sky"></div>
+  <svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
+    <polygon points="0,400 0,220 150,120 260,200 380,80 520,190 620,60 760,180 880,90 1020,210 1120,140 1200,220 1200,400" fill="#0d1826"/>
+    <polygon points="0,400 0,280 180,210 320,260 460,180 600,250 760,170 900,240 1040,190 1200,260 1200,400" fill="#0a141f"/>
+    <g class="gate-glow">
+      <circle cx="600" cy="248" r="5" fill="#f0c98a"/>
+      <circle cx="600" cy="248" r="14" fill="#c79a56" opacity="0.25"/>
+    </g>
+  </svg>
+  <div class="hero-content">
+    <span class="eyebrow">{{ page.eyebrow | default: "Chroniken der verborgenen Stadt" }}</span>
+    <h1>{{ page.title }}</h1>
+  </div>
+</header>
+
+<section class="content-section">
+  <div class="wrap prose">
+    {{ content }}
+  </div>
+</section>
+
+<footer>
+  <div class="tablet">
+    <span class="eyebrow">Zurück zum Tor</span>
+    <p style="margin:0; color: var(--text-muted);">
+      Kehre zur Startseite zurück oder wandere weiter durch die Chroniken.
+    </p>
+    <div class="links">
+      <a href="{{ '/' | relative_url }}">Start</a>
+      <a href="{{ '/vorgeschichte/' | relative_url }}">Vorgeschichte</a>
+      <a href="{{ '/fraktionen/' | relative_url }}">Fraktionen</a>
+      <a href="{{ '/orte/' | relative_url }}">Orte</a>
+    </div>
+  </div>
+  <p class="fine-print">gondolin.at &middot; eine verborgene Feste, gut in Ordnung gehalten</p>
+</footer>
+
+</body>
+</html>
