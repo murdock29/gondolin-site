@@ -1,5 +1,8 @@
+---
+layout: null
+---
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,6 +48,49 @@
   a { color: var(--gold); text-decoration: none; }
   a:hover, a:focus-visible { text-decoration: underline; }
   a:focus-visible, button:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+
+  /* ---------- NAVIGATION ---------- */
+  .site-nav{
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    z-index: 10;
+    background: rgba(10, 20, 32, 0.55);
+    backdrop-filter: blur(6px);
+  }
+
+  .nav-wrap{
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 1rem 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .nav-brand{
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    color: var(--silver);
+    font-size: 1rem;
+  }
+  .nav-brand:hover{ color: var(--gold); text-decoration: none; }
+
+  .nav-links{
+    display: flex;
+    gap: 1.6rem;
+    flex-wrap: wrap;
+    font-family: 'Jost', sans-serif;
+    font-size: 0.82rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .nav-links a{ color: var(--text-muted); }
+  .nav-links a:hover{ color: var(--gold); }
+  .nav-links a.active{ color: var(--gold); border-bottom: 1px solid var(--gold-dim); padding-bottom: 2px; }
 
   /* ---------- HERO ---------- */
   .hero{
@@ -199,6 +245,18 @@
 </head>
 <body>
 
+<nav class="site-nav">
+  <div class="nav-wrap">
+    <a href="/" class="nav-brand">GONDOLIN</a>
+    <div class="nav-links">
+      <a href="/" class="active">Start</a>
+      <a href="/vorgeschichte/">Vorgeschichte</a>
+      <a href="/fraktionen/">Fraktionen</a>
+      <a href="/orte/">Orte</a>
+    </div>
+  </div>
+</nav>
+
 <header class="hero">
   <div class="hero-sky"></div>
   <svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true">
@@ -276,9 +334,10 @@
       Reach the keeper of this hold, or wander further into the vale.
     </p>
     <div class="links">
+      <a href="/vorgeschichte/">Vorgeschichte</a>
+      <a href="/fraktionen/">Fraktionen</a>
+      <a href="/orte/">Orte</a>
       <a href="mailto:you@gondolin.at">Send word</a>
-      <a href="#">The chronicle</a>
-      <a href="#">About the keeper</a>
     </div>
   </div>
   <p class="fine-print">gondolin.at &middot; a hidden hold, kept in good order</p>
